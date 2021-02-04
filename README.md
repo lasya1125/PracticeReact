@@ -2,7 +2,10 @@
 
 [Read CSV file in React](https://www.cluemediator.com/read-csv-file-in-react)  
 [Search Functionality](https://developer.okta.com/blog/2020/08/26/react-hooks)  
-[Google Sheets API](https://developers.google.com/sheets/api/reference/rest)
+[Google Sheets API](https://developers.google.com/sheets/api/reference/rest)  
+[Google Sheets API Key Functionality](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get)  
+[How To Fetch Data From Google Sheets with React and Tabletop.js](https://medium.com/vowel-magic/how-to-fetch-data-from-google-sheets-with-react-and-tabletop-js-ca0e9d2ab34b)  
+[Tabletop - npm](https://www.npmjs.com/package/tabletop)
 
 # Getting Started with Create React App
 
