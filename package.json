@@ -7,16 +7,14 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
-<<<<<<< HEAD
-    "googleapis": "^67.0.0",
-=======
     "googleapis": "^39.2.0",
->>>>>>> dae1396cc51fa9a8c6258a597996669e01993b9e
+    "mdbreact": "^5.0.1",
     "react": "^17.0.1",
     "react-csv-to-table": "0.0.4",
     "react-data-table-component": "^6.11.5",
     "react-dom": "^17.0.1",
     "react-scripts": "^4.0.0",
+    "react-table": "^7.6.3",
     "styled-components": "^5.2.1",
     "tabletop": "^1.6.3",
     "web-vitals": "^0.2.4",

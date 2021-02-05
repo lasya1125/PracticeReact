@@ -1,7 +1,8 @@
 import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
+import Table from 'react-bootstrap/Table'
 
-import Tabletop from "tabletop";
+import Tabletop from 'tabletop';
 
 function App() {
 
@@ -17,12 +18,41 @@ function App() {
       .catch((err) => console.warn(err));
   }, []);
 
-
   // after getting data this displays each item 
   return (
     <>
       <h1>UNC App Lab Skills Tree</h1>
-      <ul>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td colSpan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </Table>
+
+      {/* <ul>
         {data.map((item, i) => (
           <Fragment key={i}>
             <li>Name - {item.Name}</li>
@@ -36,7 +66,8 @@ function App() {
             <br />
           </Fragment>
         ))}
-      </ul>
+      </ul> */}
+      
     </>
   );
 
