@@ -2,7 +2,8 @@ import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 import Table from 'react-bootstrap/Table'
 
-import Tabletop from 'tabletop';
+import Tabletop from "tabletop";
+import Table from 'react-bootstrap/Button';
 
 function App() {
 
@@ -22,52 +23,36 @@ function App() {
   return (
     <>
       <h1>UNC App Lab Skills Tree</h1>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
-          </tr>
+      {/* <Table striped bordered hover variant="dark"> */}
+      <table>
+        <thead> 
+          <th> Name </th>
+          <th> Email </th>
+          <th> OS </th>
+          <th> Coding Language </th>
+          <th> IDEs </th>
+          <th> Frameworks </th>
+          <th> Application </th>
+          <th> Additional Info </th>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </Table>
-
-      {/* <ul>
         {data.map((item, i) => (
           <Fragment key={i}>
-            <li>Name - {item.Name}</li>
-            <li>Email - {item.Email}</li>
-            <li>Operating Systems - {item.Concat_Operating_System}</li>
-            <li>Coding Languages - {item.Concat_Coding_Language}</li>
-            <li>IDEs - {item.Concat_IDE}</li>
-            <li>Frameworks - {item.Concat_Framework}</li>
-            <li>Application - {item.Concat_Application}</li>
-            <li>Additional Info - {item.Website}</li>
-            <br />
+            <tr>
+            <td>{item.Name}</td>
+            <td>{item.Email}</td>
+            <td>{item.Concat_Operating_System}</td>
+            <td>{item.Concat_Coding_Language}</td>
+            <td>{item.Concat_IDE}</td>
+            <td>{item.Concat_Framework}</td>
+            <td>{item.Concat_Application}</td>
+            <td><a  href={item.Website}>{item.Website}</a></td>
+            </tr>
           </Fragment>
         ))}
-      </ul> */}
-      
+        </tbody>
+      {/* </Table> */}
+      </table>
     </>
   );
 
