@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 
 import Tabletop from "tabletop";
+import Table from 'react-bootstrap/Button';
 
 function App() {
 
@@ -22,21 +23,36 @@ function App() {
   return (
     <>
       <h1>UNC App Lab Skills Tree</h1>
-      <ul>
+      {/* <Table striped bordered hover variant="dark"> */}
+      <table>
+        <thead> 
+          <th> Name </th>
+          <th> Email </th>
+          <th> OS </th>
+          <th> Coding Language </th>
+          <th> IDEs </th>
+          <th> Frameworks </th>
+          <th> Application </th>
+          <th> Additional Info </th>
+        </thead>
+        <tbody>
         {data.map((item, i) => (
           <Fragment key={i}>
-            <li>Name - {item.Name}</li>
-            <li>Email - {item.Email}</li>
-            <li>Operating Systems - {item.Concat_Operating_System}</li>
-            <li>Coding Languages - {item.Concat_Coding_Language}</li>
-            <li>IDEs - {item.Concat_IDE}</li>
-            <li>Frameworks - {item.Concat_Framework}</li>
-            <li>Application - {item.Concat_Application}</li>
-            <li>Additional Info - {item.Website}</li>
-            <br />
+            <tr>
+            <td>{item.Name}</td>
+            <td>{item.Email}</td>
+            <td>{item.Concat_Operating_System}</td>
+            <td>{item.Concat_Coding_Language}</td>
+            <td>{item.Concat_IDE}</td>
+            <td>{item.Concat_Framework}</td>
+            <td>{item.Concat_Application}</td>
+            <td><a  href={item.Website}>{item.Website}</a></td>
+            </tr>
           </Fragment>
         ))}
-      </ul>
+        </tbody>
+      {/* </Table> */}
+      </table>
     </>
   );
 
