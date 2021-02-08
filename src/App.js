@@ -5,11 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Tabletop from "tabletop";
 import Table from 'react-bootstrap/Table';
 import Search from './Search';
-
+import { BrowserRouter as Router } from "react-router-dom";
+import Announcer from './announcer';
 // TO DO: 
 /*
-  *Allow to search while typing instead of pressing enter
-  *Stop creating a new page for each search 
   *Adding CSS styling for the search bar
 */
 
@@ -33,14 +32,20 @@ function App() {
   //stores the search query
   const query = new URLSearchParams(search).get('s');
 
-  //creates an array of only relevant rows
-  const filteredPosts = filterPosts(data, query);
-
+  const [searchQuery, setSearchQuery] = useState(query || '');
+    //creates an array of only relevant rows
+  const filteredPosts = filterPosts(data, searchQuery);
   // after getting data this displays each item 
   return (  
     <>
+    <Router>
     <div>
-    <Search />
+      {/* Allows screenreaders to know that the table has changed */}
+    <Announcer message={`Table has ${filteredPosts.length} rows`}/>
+    <Search 
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
       <h1>UNC App Lab Skills Tree</h1>
       <Table striped bordered>
         <thead> 
@@ -71,6 +76,7 @@ function App() {
         </tbody>
       </Table>
       </div>
+      </Router>
     </>
   );
 
