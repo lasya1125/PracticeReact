@@ -11,7 +11,8 @@ import Row from 'react-bootstrap/Row';
 
 // TO DO: 
 /*
-  *Adding CSS styling for the search bar
+  *Change size of Search Label / Correctly align label and searchbar
+  *Do something about the bg
 */
 
 function App() {

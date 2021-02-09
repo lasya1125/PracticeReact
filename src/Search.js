@@ -21,9 +21,6 @@ return (
   <Form.Label column="lg" sm={4}> Search </Form.Label>
   <Col sm={10}>
   <form action ="/" method ="get" autoComplete="off" onSubmit={onSubmit}>
-    {/* <label htmlFor="header-search">
-      {/* span class is to allow screen readers to know a search bar is there */
-        /*<span className="visually-hidden">Search</span> */}
     <Form.Control
       value={searchQuery}
       onInput = {e => setSearchQuery(e.target.value)}
