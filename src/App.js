@@ -1,12 +1,14 @@
 import './App.css';
 import React, { useState, useEffect, Fragment } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Tabletop from "tabletop";
 import Table from 'react-bootstrap/Table';
 import Search from './Search';
 import { BrowserRouter as Router } from "react-router-dom";
 import Announcer from './announcer';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 // TO DO: 
 /*
   *Adding CSS styling for the search bar
@@ -42,11 +44,18 @@ function App() {
     <div>
       {/* Allows screenreaders to know that the table has changed */}
     <Announcer message={`Table has ${filteredPosts.length} rows`}/>
-    <Search 
+    <Container>
+  <Row className="justify-content-md-center">
+      <h1>UNC App Lab Skills Tree</h1>
+    </Row>
+  <Row className="justify-content-md-center">
+      <Search 
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-      <h1>UNC App Lab Skills Tree</h1>
+  </Row>
+       
+      </Container>
       <Table striped bordered>
         <thead> 
           <th> Name </th>
