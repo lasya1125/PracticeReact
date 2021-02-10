@@ -18,7 +18,11 @@ const SearchBar = ({searchQuery , setSearchQuery}) =>{
 return (
   <Form>
   <Form.Group as={Row} controlId="formSearchBar">
-  <Form.Label column="lg" sm={4}> Search </Form.Label>
+    <Col sm={2}>
+      {/*  Add inline text css for size */}
+  <Form.Label> Search </Form.Label>
+  </Col>
+  {/* <Col sm={10}> */}
   <Col sm={10}>
   <form action ="/" method ="get" autoComplete="off" onSubmit={onSubmit}>
     <Form.Control
@@ -26,12 +30,13 @@ return (
       onInput = {e => setSearchQuery(e.target.value)}
       type="text"
       id="header-search"
-      placeholder="Search"
+      placeholder="What are you looking for?"
       name="s"
       />
     {/* </label> */}
   </form>
   </Col>
+  {/* </Col> */}
   </Form.Group>
   </Form>
 
