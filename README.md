@@ -8,7 +8,9 @@
 [Tabletop - npm](https://www.npmjs.com/package/tabletop)  
 [React Search Tutorial](https://www.emgoto.com/react-search-bar/)
 [Adding Bootstrap Stylesheet](https://react-bootstrap.github.io/getting-started/introduction/)  
-[Table Styling](https://react-bootstrap.github.io/components/table/)  
+[Table Styling](https://react-bootstrap.github.io/components/table/) 
+[Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs) 
+[Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)
 
 # Getting Started with Create React App
 

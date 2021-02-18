@@ -19,12 +19,12 @@ return (
   <Form>
   <Form.Group as={Row} controlId="formSearchBar">
     <Col sm={2}>
-      {/*  Add inline text css for size */}
   <Form.Label> Search </Form.Label>
   </Col>
-  {/* <Col sm={10}> */}
   <Col sm={10}>
   <form action ="/" method ="get" autoComplete="off" onSubmit={onSubmit}>
+
+    {/* Searchbar */}
     <Form.Control
       value={searchQuery}
       onInput = {e => setSearchQuery(e.target.value)}
@@ -33,10 +33,9 @@ return (
       placeholder="What are you looking for?"
       name="s"
       />
-    {/* </label> */}
+      
   </form>
   </Col>
-  {/* </Col> */}
   </Form.Group>
   </Form>
 
