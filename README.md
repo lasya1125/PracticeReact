@@ -6,11 +6,11 @@
 [Google Sheets API Key Functionality](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get)  
 [How To Fetch Data From Google Sheets with React and Tabletop.js](https://medium.com/vowel-magic/how-to-fetch-data-from-google-sheets-with-react-and-tabletop-js-ca0e9d2ab34b)  
 [Tabletop - npm](https://www.npmjs.com/package/tabletop)  
-[React Search Tutorial](https://www.emgoto.com/react-search-bar/)
+[React Search Tutorial](https://www.emgoto.com/react-search-bar/)  
 [Adding Bootstrap Stylesheet](https://react-bootstrap.github.io/getting-started/introduction/)  
-[Table Styling](https://react-bootstrap.github.io/components/table/) 
-[Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs) 
-[Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)
+[Table Styling](https://react-bootstrap.github.io/components/table/)   
+[Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs)   
+[Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)  
 
 # [Fixing the Issue with Firebase Hosting Loading Screen](https://github.com/coreui/coreui-react/issues/55)
 
