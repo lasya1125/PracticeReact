@@ -12,6 +12,19 @@
 [Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs) 
 [Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)
 
+# [Fixing the Issue with Firebase Hosting Loading Screen](https://github.com/coreui/coreui-react/issues/55)
+
+Solution 1: check your index.html inside "build" folder and index.html in your own project. They should be the same, if not, copy code index.html outside "build" folder and paste into index.html inside "build" folder.
+
+solution 2 : delete your .firebase folder. and init it again.
+=> firebase init
+? What do you want to use as your public directory? build < == NOTE: "build" is my directory
+? Configure as a single-page app (rewrite all urls to /index.html)? No <== select NO
+? File build/404.html already exists. Overwrite? No <== select NO
+? File build/index.html already exists. Overwrite? No <== select NO
+
+After doing these things, I also get that notification of "Welcome Firebase Setting Host Complete" , and I just wait for a while. then reload the website.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
