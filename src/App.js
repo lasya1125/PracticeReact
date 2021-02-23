@@ -39,6 +39,14 @@ function App() {
     //creates an array of only relevant rows
   const filteredPosts = filterPosts(data, searchQuery);
   // after getting data this displays each item 
+  var highlight = "";
+
+  if (searchQuery == "") {
+    highlight = "nonhighlighted";
+  } else {
+    highlight = "highlighted";
+  }
+
   return (  
     <>
     <Router>
@@ -57,7 +65,7 @@ function App() {
   </Row>
        
       </Container>
-      <Table striped bordered>
+      <Table bordered>
         <thead> 
           <th> Name </th>
           <th> Email </th>
@@ -71,7 +79,7 @@ function App() {
         <tbody>
         {filteredPosts.map((item, i) => (
           <Fragment key={i}>
-            <tr>
+            <tr class = {highlight}>
               <td>{item.Name}</td>
               <td>{item.Email}</td>
               <td>{item.Concat_Operating_System}</td>
@@ -98,7 +106,7 @@ const filterPosts = (posts, query) => {
   }
 
   return posts.filter((post) => {
-      const searchQuery = query.toLowerCase();
+      const searchQuery = query.toLowerCase().trim();
       let concatArray = new Array();
 
       const codingLanguage = post.Concat_Coding_Language.toLowerCase();
