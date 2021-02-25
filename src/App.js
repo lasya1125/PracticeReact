@@ -105,28 +105,28 @@ const filterPosts = (posts, query) => {
   }
 
   return posts.filter((post) => {
-    const searchQuery = query.toLowerCase();
-    let concatArray = new Array();
+      const searchQuery = query.toLowerCase().trim();
+      let concatArray = new Array();
 
-    const codingLanguage = post.Concat_Coding_Language.toLowerCase();
-    const application = post.Concat_Application.toLowerCase();
-    const framework = post.Concat_Framework.toLowerCase();
-    const ide = post.Concat_IDE.toLowerCase();
-    const operatingsystem = post.Concat_Operating_System.toLowerCase();
+      const codingLanguage = post.Concat_Coding_Language.toLowerCase();
+      const application = post.Concat_Application.toLowerCase();
+      const framework = post.Concat_Framework.toLowerCase();
+      const ide = post.Concat_IDE.toLowerCase();
+      const operatingsystem = post.Concat_Operating_System.toLowerCase();
 
-    concatArray.push(codingLanguage);
-    concatArray.push(application);
-    concatArray.push(framework);
-    concatArray.push(ide);
-    concatArray.push(operatingsystem);
+      concatArray.push(codingLanguage);
+      concatArray.push(application);
+      concatArray.push(framework);
+      concatArray.push(ide);
+      concatArray.push(operatingsystem);
 
-    //Checks to see if the term is present in the row
-    for (let i = 0; i < concatArray.length; i++) {
-      if (concatArray[i].includes(searchQuery)) {
-        return true;
+      //Checks to see if the term is present in the row
+      for (let i = 0 ; i < concatArray.length ; i++){
+        if (concatArray[i].includes(searchQuery)) {
+          return true;
+        }
       }
-    }
-    return false;
+      return false;
   });
 };
 

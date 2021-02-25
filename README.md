@@ -6,11 +6,24 @@
 [Google Sheets API Key Functionality](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets/get)  
 [How To Fetch Data From Google Sheets with React and Tabletop.js](https://medium.com/vowel-magic/how-to-fetch-data-from-google-sheets-with-react-and-tabletop-js-ca0e9d2ab34b)  
 [Tabletop - npm](https://www.npmjs.com/package/tabletop)  
-[React Search Tutorial](https://www.emgoto.com/react-search-bar/)
+[React Search Tutorial](https://www.emgoto.com/react-search-bar/)  
 [Adding Bootstrap Stylesheet](https://react-bootstrap.github.io/getting-started/introduction/)  
-[Table Styling](https://react-bootstrap.github.io/components/table/) 
-[Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs) 
-[Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)
+[Table Styling](https://react-bootstrap.github.io/components/table/)   
+[Firebase Hosting Tutorial](https://www.youtube.com/watch?v=IDHfvpsYShs)   
+[Adding Firebase.cmd to PATH](https://stackoverflow.com/questions/29531235/firebase-hosting-set-up-issue?stw=2)  
+
+# [Fixing the Issue with Firebase Hosting Loading Screen](https://github.com/coreui/coreui-react/issues/55)
+
+Solution 1: check your index.html inside "build" folder and index.html in your own project. They should be the same, if not, copy code index.html outside "build" folder and paste into index.html inside "build" folder.
+
+solution 2 : delete your .firebase folder. and init it again.
+=> firebase init
+? What do you want to use as your public directory? build < == NOTE: "build" is my directory
+? Configure as a single-page app (rewrite all urls to /index.html)? No <== select NO
+? File build/404.html already exists. Overwrite? No <== select NO
+? File build/index.html already exists. Overwrite? No <== select NO
+
+After doing these things, I also get that notification of "Welcome Firebase Setting Host Complete" , and I just wait for a while. then reload the website.
 
 # Getting Started with Create React App
 

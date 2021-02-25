@@ -46,3 +46,12 @@
   white-space: nowrap;
   width: 1px;
 }
+
+tr.highlighted {
+  background-color: #F1B814;
+}
+tr.nonhighlighted {
+  background-color: #FFFF;
+
+
+}
