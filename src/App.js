@@ -35,11 +35,14 @@ function App() {
 
   //stores the search query
   const query = new URLSearchParams(search).get('s');
-  console.log(query);
 
   const [searchQuery, setSearchQuery] = useState(query || '');
   //creates an array of only relevant rows
-  const filteredPosts = filterPosts(data, searchQuery);
+  let copy = [...data];
+  const filteredPosts = filterPosts(copy, searchQuery);
+  if(filteredPosts[0]){
+  console.log(filteredPosts[0].Website);
+  }
   // after getting data this displays each item 
 
 
@@ -74,7 +77,10 @@ function App() {
           <th> Additional Info </th>
         </thead>
         <tbody>
-        {filteredPosts.map((item, i) => (
+        {filteredPosts.map((item, i) => {
+          // console.log(item.Website);
+          return (
+      
           <Fragment key={i}>
               <tr>
               <td>{item.Name}</td>
@@ -85,10 +91,10 @@ function App() {
               <td>{parse(item.Concat_IDE)}</td>
               <td>{parse(item.Concat_Framework)}</td>
               <td>{parse(item.Concat_Application)}</td>
-              <td><a  href={item.Website}>{item.Website}</a></td>
+              <td>{parse(item.Website)}</td>
             </tr>
           </Fragment>
-        ))}
+        )})}
         </tbody>
       </Table>
       </div>
@@ -98,10 +104,44 @@ function App() {
 
 }
 
+
+const removeHrefTag = (url) => {
+  
+  let closingTag = "</a>";
+  if(url.includes("<a href='")) {
+    let fullOpeningIndex = url.indexOf(">") + 1;
+    return url.slice(fullOpeningIndex, url.length - closingTag.length);
+  }
+  return url;
+}
+
+const splitHrefTag = (urls) => {
+  let hrefArray = urls.split(",");
+  // console.log(hrefArray);
+  let newString = "";
+  for (let i = 0 ; i < hrefArray.length ; i++){
+    // console.log(hrefArray[i]);
+    hrefArray[i] = hrefArray[i].trim();
+    // console.log(hrefArray[i]);
+    hrefArray[i] = removeHrefTag(hrefArray[i]).trim();
+    // console.log(hrefArray[i]);
+    hrefArray[i] = '<a href="' + hrefArray[i] +'"> ' + hrefArray[i] + " </a>";
+    // console.log(hrefArray[i]);
+    if (i == 0) {
+      newString = hrefArray[i];
+      // console.log(newString);
+    } else {
+      newString = newString + ", " + hrefArray[i];
+    }
+  }
+  // console.log(parse(newString));
+  return newString
+}
+
 // Function made to remove all the span tags added to search items before filtered
 // Has to be done before filtering
 
-const removespantag = (posts) => {
+const removeSpanTag = (posts) => {
   let stringOpTag = "<span class='highlighted'>";
   let stringClsTag = "</span>";
   for(let i = 0 ; i < posts.length ; i++){
@@ -116,19 +156,29 @@ const removespantag = (posts) => {
 }
 
 const filterPosts = (posts, query) => {
-  posts = removespantag(posts);
+  posts = removeSpanTag(posts);
+ 
+  // console.log(splitHrefTag("<a href='google.com'> google.com </a>"));
 
   if (!query) {
-    return posts;
+    return posts.map((post,index) => {
+      if (index == 0){
+      // console.log(post.Website);
+      post.Website = splitHrefTag(post.Website);
+      console.log("post.website : " + post.Website);
+      }
+      return post;
+    });
   }
 
   return posts.filter((post) => {
-
+    console.log(post.Website);
     // seperate array of terms is created to restrict searches in those columns
      
     const searchQuery = query.toLowerCase().trim();
     let concatArray = new Array();
 
+    
     const codingLanguage = post.Concat_Coding_Language.toLowerCase();
     const application = post.Concat_Application.toLowerCase();
     const framework = post.Concat_Framework.toLowerCase();
