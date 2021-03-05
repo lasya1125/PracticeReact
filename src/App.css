@@ -47,10 +47,10 @@
   width: 1px;
 }
 
-tr.highlighted {
+.highlighted {
   background-color: #F1B814;
 }
-tr.nonhighlighted {
+.nonhighlighted {
   background-color: #FFFF;
 
 

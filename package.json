@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "googleapis": "^39.2.0",
+    "html-react-parser": "^1.2.4",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-csv-to-table": "0.0.4",
