@@ -37,6 +37,7 @@ function App() {
   console.log(query);
 
   const [searchQuery, setSearchQuery] = useState(query || '');
+  console.log(searchQuery);
   //creates an array of only relevant rows
   const filteredPosts = filterPosts(data, searchQuery);
   // after getting data this displays each item 
