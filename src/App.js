@@ -10,11 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import parse from "html-react-parser";
 
-// TO DO: 
-/*
-  *Change size of Search Label / Correctly align label and searchbar
-  *Do something about the bg
-*/
+
 
 function App() {
 
@@ -78,7 +74,6 @@ function App() {
         </thead>
         <tbody>
         {filteredPosts.map((item, i) => {
-          // console.log(item.Website);
           return (
       
           <Fragment key={i}>
@@ -91,7 +86,7 @@ function App() {
               <td>{parse(item.Concat_IDE)}</td>
               <td>{parse(item.Concat_Framework)}</td>
               <td>{parse(item.Concat_Application)}</td>
-              <td>{parse(item.Website)}</td>
+              <td>{parse(splitHrefTag(item.Website))}</td>
             </tr>
           </Fragment>
         )})}
@@ -104,39 +99,43 @@ function App() {
 
 }
 
-
+// Removes previous href tags on links to clean it up
 const removeHrefTag = (url) => {
   
   let closingTag = "</a>";
+
   if(url.includes("<a href='")) {
     let fullOpeningIndex = url.indexOf(">") + 1;
     return url.slice(fullOpeningIndex, url.length - closingTag.length);
   }
+
   return url;
 }
 
+// Adds href tag to each individual link
 const splitHrefTag = (urls) => {
   let hrefArray = urls.split(",");
-  // console.log(hrefArray);
   let newString = "";
+
   for (let i = 0 ; i < hrefArray.length ; i++){
-    // console.log(hrefArray[i]);
+
     hrefArray[i] = hrefArray[i].trim();
-    // console.log(hrefArray[i]);
+    
+    //removes any previous href tags to keep things clean
     hrefArray[i] = removeHrefTag(hrefArray[i]).trim();
-    // console.log(hrefArray[i]);
+
     hrefArray[i] = '<a href="' + hrefArray[i] +'"> ' + hrefArray[i] + " </a>";
-    // console.log(hrefArray[i]);
+
     if (i == 0) {
       newString = hrefArray[i];
-      // console.log(newString);
     } else {
       newString = newString + ", " + hrefArray[i];
     }
+
   }
-  // console.log(parse(newString));
   return newString
 }
+
 
 // Function made to remove all the span tags added to search items before filtered
 // Has to be done before filtering
@@ -157,22 +156,13 @@ const removeSpanTag = (posts) => {
 
 const filterPosts = (posts, query) => {
   posts = removeSpanTag(posts);
- 
-  // console.log(splitHrefTag("<a href='google.com'> google.com </a>"));
 
   if (!query) {
-    return posts.map((post,index) => {
-      if (index == 0){
-      // console.log(post.Website);
-      post.Website = splitHrefTag(post.Website);
-      console.log("post.website : " + post.Website);
-      }
-      return post;
-    });
-  }
+    return posts
+  };
 
   return posts.filter((post) => {
-    console.log(post.Website);
+
     // seperate array of terms is created to restrict searches in those columns
      
     const searchQuery = query.toLowerCase().trim();
