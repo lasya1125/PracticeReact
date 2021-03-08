@@ -10,11 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import parse from "html-react-parser";
 
-// TO DO: 
-/*
-  *Change size of Search Label / Correctly align label and searchbar
-  *Do something about the bg
-*/
+
 
 function App() {
 
@@ -35,11 +31,14 @@ function App() {
 
   //stores the search query
   const query = new URLSearchParams(search).get('s');
-  console.log(query);
 
   const [searchQuery, setSearchQuery] = useState(query || '');
   //creates an array of only relevant rows
-  const filteredPosts = filterPosts(data, searchQuery);
+  let copy = [...data];
+  const filteredPosts = filterPosts(copy, searchQuery);
+  if(filteredPosts[0]){
+  console.log(filteredPosts[0].Website);
+  }
   // after getting data this displays each item 
 
 
@@ -74,7 +73,9 @@ function App() {
           <th> Additional Info </th>
         </thead>
         <tbody>
-        {filteredPosts.map((item, i) => (
+        {filteredPosts.map((item, i) => {
+          return (
+      
           <Fragment key={i}>
               <tr>
               <td>{item.Name}</td>
@@ -85,10 +86,10 @@ function App() {
               <td>{parse(item.Concat_IDE)}</td>
               <td>{parse(item.Concat_Framework)}</td>
               <td>{parse(item.Concat_Application)}</td>
-              <td><a  href={item.Website}>{item.Website}</a></td>
+              <td>{parse(splitHrefTag(item.Website))}</td>
             </tr>
           </Fragment>
-        ))}
+        )})}
         </tbody>
       </Table>
       </div>
@@ -98,10 +99,48 @@ function App() {
 
 }
 
+// Removes previous href tags on links to clean it up
+const removeHrefTag = (url) => {
+  
+  let closingTag = "</a>";
+
+  if(url.includes("<a href='")) {
+    let fullOpeningIndex = url.indexOf(">") + 1;
+    return url.slice(fullOpeningIndex, url.length - closingTag.length);
+  }
+
+  return url;
+}
+
+// Adds href tag to each individual link
+const splitHrefTag = (urls) => {
+  let hrefArray = urls.split(",");
+  let newString = "";
+
+  for (let i = 0 ; i < hrefArray.length ; i++){
+
+    hrefArray[i] = hrefArray[i].trim();
+    
+    //removes any previous href tags to keep things clean
+    hrefArray[i] = removeHrefTag(hrefArray[i]).trim();
+
+    hrefArray[i] = '<a href="' + hrefArray[i] +'"> ' + hrefArray[i] + " </a>";
+
+    if (i == 0) {
+      newString = hrefArray[i];
+    } else {
+      newString = newString + ", " + hrefArray[i];
+    }
+
+  }
+  return newString
+}
+
+
 // Function made to remove all the span tags added to search items before filtered
 // Has to be done before filtering
 
-const removespantag = (posts) => {
+const removeSpanTag = (posts) => {
   let stringOpTag = "<span class='highlighted'>";
   let stringClsTag = "</span>";
   for(let i = 0 ; i < posts.length ; i++){
@@ -116,11 +155,11 @@ const removespantag = (posts) => {
 }
 
 const filterPosts = (posts, query) => {
-  posts = removespantag(posts);
+  posts = removeSpanTag(posts);
 
   if (!query) {
-    return posts;
-  }
+    return posts
+  };
 
   return posts.filter((post) => {
 
@@ -129,6 +168,7 @@ const filterPosts = (posts, query) => {
     const searchQuery = query.toLowerCase().trim();
     let concatArray = new Array();
 
+    
     const codingLanguage = post.Concat_Coding_Language.toLowerCase();
     const application = post.Concat_Application.toLowerCase();
     const framework = post.Concat_Framework.toLowerCase();
