@@ -18,6 +18,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",
     "react-table": "^7.6.3",
+    "sanitize-html": "^2.3.2",
+    "string-strip-html": "^8.2.4",
     "styled-components": "^5.2.1",
     "tabletop": "^1.6.3",
     "web-vitals": "^0.2.4",
