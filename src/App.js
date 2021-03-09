@@ -9,8 +9,7 @@ import Announcer from './announcer';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import parse from "html-react-parser";
-
-
+import { stripHtml } from "string-strip-html";
 
 function App() {
 
@@ -176,11 +175,11 @@ const filterPosts = (posts, query) => {
     const ide = post.Concat_IDE.toLowerCase();
     const operatingsystem = post.Concat_Operating_System.toLowerCase();
 
-    concatArray.push(codingLanguage);
-    concatArray.push(application);
-    concatArray.push(framework);
-    concatArray.push(ide);
-    concatArray.push(operatingsystem);
+    concatArray.push(stripHtml(codingLanguage).result);
+    concatArray.push(stripHtml(application).result);
+    concatArray.push(stripHtml(framework).result);
+    concatArray.push(stripHtml(ide).result);
+    concatArray.push(stripHtml(operatingsystem).result);
 
     //check if search term is present
       for(let i = 0 ; i < concatArray.length ; i++){
