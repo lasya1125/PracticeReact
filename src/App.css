@@ -52,6 +52,21 @@
 }
 .nonhighlighted {
   background-color: #FFFF;
+}
 
+.column {
+  float: left;
+  padding: 2vw;
+}
 
+.left{
+  width: 40%;
+}
+
+.right{
+  width: 60%;
+}
+
+body {
+  padding: 1vw;
 }

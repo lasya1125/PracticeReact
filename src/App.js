@@ -36,63 +36,64 @@ function App() {
   //creates an array of only relevant rows
   let copy = [...data];
   const filteredPosts = filterPosts(copy, searchQuery);
-  if(filteredPosts[0]){
-  console.log(filteredPosts[0].Website);
+  if (filteredPosts[0]) {
+    console.log(filteredPosts[0].Website);
   }
   // after getting data this displays each item 
 
-
-
-  return (  
+  return (
     <>
-    <Router>
-    <div>
-      {/* Allows screenreaders to know that the table has changed */}
-    <Announcer message={`Table has ${filteredPosts.length} rows`}/>
-    <Container>
-  <Row className="justify-content-md-center">
-      <h1>UNC App Lab Skills Tree</h1>
-    </Row>
-  <Row className="justify-content-md-center">
-      <Search 
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-  </Row>
-       
-      </Container>
-      <Table bordered>
-        <thead> 
-          <th> Name </th>
-          <th> Email </th>
-          <th> OS </th>
-          <th> Coding Language </th>
-          <th> IDEs </th>
-          <th> Frameworks </th>
-          <th> Application </th>
-          <th> Additional Info </th>
-        </thead>
-        <tbody>
-        {filteredPosts.map((item, i) => {
-          return (
-      
-          <Fragment key={i}>
-              <tr>
-              <td>{item.Name}</td>
-              <td>{item.Email}</td>
-              {/* Parse function is necessary for the html span tag to show up*/}
-              <td>{parse(item.Concat_Operating_System)}</td>
-              <td>{parse(item.Concat_Coding_Language)}</td>
-              <td>{parse(item.Concat_IDE)}</td>
-              <td>{parse(item.Concat_Framework)}</td>
-              <td>{parse(item.Concat_Application)}</td>
-              <td>{parse(splitHrefTag(item.Website))}</td>
-            </tr>
-          </Fragment>
-        )})}
-        </tbody>
-      </Table>
-      </div>
+      <Router>
+        <div>
+          {/* Allows screenreaders to know that the table has changed */}
+          <Announcer message={`Table has ${filteredPosts.length} rows`} />
+
+          <div class="row">
+            <div class="column left">
+              <h1>UNC App Lab Skills Tree</h1>
+              <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+            </div>
+            <div class="column right">
+              <p>The Skills Tree is a resource to contact peers regarding questions or interests around a specific technology or area. If you would like to be included in this list and are open to being contacted about the skills you list, please fill out this form <a href="https://forms.gle/Tujwhgu6GEsY52zC6">here</a>.</p>
+              <p>If you want to learn more about the App Lab and the services we provide, join our slack at <a href="https://unc-app-lab.slack.com/join/signup#/">this link</a> and check out our website <a href="https://applab.unc.edu/">here</a>.</p>
+            </div>
+          </div>
+
+          <Table bordered striped responsive>
+            <thead>
+              <th> Name </th>
+              <th> Email </th>
+              <th> OS </th>
+              <th> Coding Language </th>
+              <th> IDEs </th>
+              <th> Frameworks </th>
+              <th> Application </th>
+              <th> Additional Info </th>
+            </thead>
+            <tbody>
+              {filteredPosts.map((item, i) => {
+                return (
+                  <Fragment key={i}>
+                    <tr>
+                      <td>{item.Name}</td>
+                      <td>{item.Email}</td>
+                      {/* Parse function is necessary for the html span tag to show up*/}
+                      <td>{parse(item.Concat_Operating_System)}</td>
+                      <td>{parse(item.Concat_Coding_Language)}</td>
+                      <td>{parse(item.Concat_IDE)}</td>
+                      <td>{parse(item.Concat_Framework)}</td>
+                      <td>{parse(item.Concat_Application)}</td>
+                      <td>{parse(splitHrefTag(item.Website))}</td>
+                    </tr>
+                  </Fragment>
+                )
+              })}
+            </tbody>
+          </Table>
+        </div>
       </Router>
     </>
   );
@@ -101,10 +102,10 @@ function App() {
 
 // Removes previous href tags on links to clean it up
 const removeHrefTag = (url) => {
-  
+
   let closingTag = "</a>";
 
-  if(url.includes("<a href='")) {
+  if (url.includes("<a href='")) {
     let fullOpeningIndex = url.indexOf(">") + 1;
     return url.slice(fullOpeningIndex, url.length - closingTag.length);
   }
@@ -117,14 +118,14 @@ const splitHrefTag = (urls) => {
   let hrefArray = urls.split(",");
   let newString = "";
 
-  for (let i = 0 ; i < hrefArray.length ; i++){
+  for (let i = 0; i < hrefArray.length; i++) {
 
     hrefArray[i] = hrefArray[i].trim();
-    
+
     //removes any previous href tags to keep things clean
     hrefArray[i] = removeHrefTag(hrefArray[i]).trim();
 
-    hrefArray[i] = '<a href="' + hrefArray[i] +'"> ' + hrefArray[i] + " </a>";
+    hrefArray[i] = '<a href="' + hrefArray[i] + '"> ' + hrefArray[i] + " </a>";
 
     if (i == 0) {
       newString = hrefArray[i];
@@ -143,11 +144,11 @@ const splitHrefTag = (urls) => {
 const removeSpanTag = (posts) => {
   let stringOpTag = "<span class='highlighted'>";
   let stringClsTag = "</span>";
-  for(let i = 0 ; i < posts.length ; i++){
+  for (let i = 0; i < posts.length; i++) {
     for (let key in posts[i]) {
-     if( posts[i][key].includes(stringOpTag)){
-       posts[i][key] = posts[i][key].slice(stringOpTag.length,posts[i][key].length-stringClsTag.length);
-     }
+      if (posts[i][key].includes(stringOpTag)) {
+        posts[i][key] = posts[i][key].slice(stringOpTag.length, posts[i][key].length - stringClsTag.length);
+      }
     }
   }
 
@@ -164,11 +165,11 @@ const filterPosts = (posts, query) => {
   return posts.filter((post) => {
 
     // seperate array of terms is created to restrict searches in those columns
-     
+
     const searchQuery = query.toLowerCase().trim();
     let concatArray = new Array();
 
-    
+
     const codingLanguage = post.Concat_Coding_Language.toLowerCase();
     const application = post.Concat_Application.toLowerCase();
     const framework = post.Concat_Framework.toLowerCase();
@@ -182,21 +183,21 @@ const filterPosts = (posts, query) => {
     concatArray.push(stripHtml(operatingsystem).result);
 
     //check if search term is present
-      for(let i = 0 ; i < concatArray.length ; i++){
-        if (concatArray[i].includes(searchQuery)) {
-          return true;
-        }
+    for (let i = 0; i < concatArray.length; i++) {
+      if (concatArray[i].includes(searchQuery)) {
+        return true;
       }
-    
-      return false;
-  }).map((item)=> {
+    }
+
+    return false;
+  }).map((item) => {
 
     //This is the section of code that allows for highlighting
     //React doesn't normally allow for scripts to be read through strings
     //Might be necessary for additional sanitazation. 
     let stringOpTag = "<span class='highlighted'>";
     let stringClsTag = "</span>";
-     
+
     const searchQuery = query.toLowerCase().trim();
     let concatArray = new Array();
 
@@ -214,18 +215,18 @@ const filterPosts = (posts, query) => {
 
     //Checks to see if the term is present in the row usin concat array
     //Adds highlighting to entire cell of original content to preserve casing
-    for (let i = 0 ; i < concatArray.length ; i++){
-     
-      
+    for (let i = 0; i < concatArray.length; i++) {
+
+
       if (concatArray[i].includes(searchQuery)) {
-        switch(i) {
+        switch (i) {
           case 0:
             item.Concat_Coding_Language = stringOpTag + item.Concat_Coding_Language + stringClsTag;
             break;
           case 1:
             item.Concat_Application = stringOpTag + item.Concat_Application + stringClsTag;
             break;
-          case 2: 
+          case 2:
             item.Concat_Framework = stringOpTag + item.Concat_Framework + stringClsTag;
             break;
           case 3:
@@ -239,12 +240,12 @@ const filterPosts = (posts, query) => {
         }
       }
     }
-      
-      return item;
-    }
 
-    );
-    
+    return item;
+  }
+
+  );
+
 };
 
 export default App;
