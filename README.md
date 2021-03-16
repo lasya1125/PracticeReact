@@ -25,11 +25,11 @@ All students expected graduation date is noted in the google form. You will need
 First, check your index.html inside "build" folder and index.html in your own project. They should be the same, if not, copy code index.html outside "build" folder and paste into index.html inside "build" folder.
 
 Delete your .firebase folder. and init it again.
-=> firebase init
-? What do you want to use as your public directory? build < == NOTE: "build" is my directory
-? Configure as a single-page app (rewrite all urls to /index.html)? No <== select NO
-? File build/404.html already exists. Overwrite? No <== select NO
-? File build/index.html already exists. Overwrite? No <== select NO
+=> firebase init  
+? What do you want to use as your public directory? build < == NOTE: "build" is my directory  
+? Configure as a single-page app (rewrite all urls to /index.html)? No <== select NO  
+? File build/404.html already exists. Overwrite? No <== select NO  
+? File build/index.html already exists. Overwrite? No <== select NO  
 
 After doing these things, you get that notification of "Welcome Firebase Setting Host Complete". Just wait for a while, then reload the website.
 
