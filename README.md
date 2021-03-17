@@ -96,3 +96,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Implementing Search and Highlight Functionality
+
+Search functionality was implemented mostly by following this [search functionality tutorial](https://developer.okta.com/blog/2020/08/26/react-hooks). There are a few modifications to the base code however. 
+
+First, the filterPosts functionality is solely in `Filter.js`. The query is also sanitized to remove any HTML tags, converted to lower case, and all blank spaces are removed. Also, only the skills from each row of the table are searchable for the user and are compiled into an array to also be sanitized from HTML tags. The filter function will then go through every skills entry in that array and check if the query is present and keep that row if it is. 
+
+The map portion of the filterPosts function is solely to add highlighting. It operates much the same as the filtering portion, but when a string has the search query, the index is used to determine which cell in the table has highlighting HTML added.
