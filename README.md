@@ -3,9 +3,14 @@
 ## Populating the Table
 We concatenated responses from the google form to create the fields we needed for the skills tree table. We used Tabletop (npm) to easily access the Google Spreadsheet with a key and it returned the data, so we could populate the rendered table.
 
-## Searching
+## Searching  
+Search functionality was implemented mostly by following this [search functionality tutorial](https://developer.okta.com/blog/2020/08/26/react-hooks). There are a few modifications to the base code however. 
 
-## Highlighting
+First, the filterPosts functionality is solely in `Filter.js`. The query is also sanitized to remove any HTML tags, converted to lower case, and all blank spaces are removed. Also, only the skills from each row of the table are searchable for the user and are compiled into an array to also be sanitized from HTML tags. The filter function will then go through every skills entry in that array and check if the query is present and keep that row if it is. 
+
+## Highlighting  
+
+The map portion of the filterPosts function solely focuses on highlighting. It operates much the same as the filtering portion, but when a string has the search query, the index is used to determine which cell in the table has highlighting HTML added.
 
 ## Future Functionalities (can currently be dealt with manually)
 
